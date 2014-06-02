@@ -1,9 +1,5 @@
 <?php include "templates/include/header.php" ?>
-
-      <div id="adminHeader">
-        <h2>Widget News Admin</h2>
-        <p>You are logged in as <b><?php echo htmlspecialchars( $_SESSION['username']) ?></b>. <a href="admin.php?action=logout"?>Log out</a></p>
-      </div>
+<?php include "templates/admin/include/header.php" ?>
 
       <h1><?php echo $results['pageTitle']?></h1>
 
@@ -29,6 +25,16 @@
           <li>
             <label for="content">Article Content</label>
             <textarea name="content" id="content" placeholder="The HTML content of the article" required maxlength="100000" style="height: 30em;"><?php echo htmlspecialchars( $results['article']->content )?></textarea>
+          </li>
+
+          <li>
+            <label for="categoryId">Article Category</label>
+            <select name="categoryId">
+              <option value="0"<?php echo !$results['article']->categoryId ? " selected" : ""?>>(none)</option>
+            <?php foreach ( $results['categories'] as $category ) { ?>
+              <option value="<?php echo $category->id?>"<?php echo ( $category->id == $results['article']->categoryId ) ? " selected" : ""?>><?php echo htmlspecialchars( $category->name )?></option>
+            <?php } ?>
+            </select>
           </li>
 
           <li>
