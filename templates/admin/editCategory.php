@@ -20,6 +20,9 @@
           <li>
             <label for="description">Description</label>
             <textarea name="description" id="description" placeholder="Brief description of the category" required maxlength="1000" style="height: 5em;"><?php echo htmlspecialchars( $results['category']->description )?></textarea>
+            <script type="text/javascript">
+              CKEDITOR.replace( 'description' );
+            </script>
           </li>
 
         </ul>
